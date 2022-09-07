@@ -17,7 +17,21 @@
  */
         internal static void PrintFrame(int width, int height, char frameChar = '*')
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    if (i == 0 | i == height - 1 | j == 0 | j == width - 1)
+                    {
+                        Console.Write(frameChar);
+                    }
+                    else
+                    {
+                        Console.Write(' ');
+                    }
+                }
+                Console.WriteLine();
+            }
         }
 
 /*
@@ -25,7 +39,25 @@
  */
         internal static void PrintFrame2(int width, int height, char frameChar = '*')
         {
-            throw new NotImplementedException();
+            int i = 0;
+            while (i < height)
+            {
+                int j = 0;
+                while (j < width)
+                {
+                    if (i == 0 | i == height - 1 | j == 0 | j == width - 1)
+                    {
+                        Console.Write(frameChar);
+                    }
+                    else
+                    {
+                        Console.Write(' ');
+                    }
+                    j++;
+                }
+                Console.WriteLine();
+                i++;
+            }
         }
 
 
@@ -37,7 +69,17 @@
  */
         internal static long Gcd(long a, long b)
         {
-            throw new NotImplementedException();
+            long x = a;
+            long y = b;
+            long z;
+            while (y != 0)
+            {
+                z = x;
+                x = y;
+                y = z % y;
+            }
+
+            return x;
         }
 
 /*
@@ -47,14 +89,25 @@
  */
         internal static double ExpTaylor(double x, int n)
         {
-            throw new NotImplementedException();
+            double s = 1 + x;
+            double fact = 1;
+            double xPov = x;
+            for (int i = 2; i <= n; i++)
+            {
+                fact *= i;
+                xPov *= x;
+                s += (xPov / fact);
+            }
+
+            return s;
         }
 
         public static void Main(string[] args)
         {
             PrintFrame(5, 3, '+');
-            throw new NotImplementedException(
-                "Вызовите здесь все перечисленные в классе функции, как это сделано в предыдущих заданиях");
+            PrintFrame2(3, 5, '-');
+            Console.WriteLine(Gcd(198, 44));
+            Console.WriteLine(ExpTaylor(2, 100));
         }
     }
 }
