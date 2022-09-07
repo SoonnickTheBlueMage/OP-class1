@@ -17,7 +17,19 @@
  */
         internal static int Min3(int a, int b, int c)
         {
-            throw new NotImplementedException();
+            var m = a;
+            
+            if (b < m)
+            {
+                m = b;
+            }
+            
+            if (c < m)
+            {
+                m = c;
+            }
+
+            return m;
         }
 
 /*
@@ -25,19 +37,19 @@
  * Функция должна иметь вид одного выражения (https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members#methods).
  * Использование функций стандартной библиотеки в решении не допускается.
  */
-        internal static int Max3(int a, int b, int c) => throw new NotImplementedException();
+        internal static int Max3(int a, int b, int c) => - Min3(-a, -b, -c);
 
         /*
  * Задание 2.3. Дано значение угла α (типа Double) в градусах. Определите значение этого же угла в радианах,
  * учитывая, что 180° = π радианов (константа Math.PI).
  */
-        internal static double Deg2Rad(double aDeg) => throw new NotImplementedException();
+        internal static double Deg2Rad(double aDeg) => aDeg / 180 * Math.PI;
 
 /*
 * Задание 2.4. Дано значение угла α в радианах. Определить значение этого же угла в градусах,
 * учитывая, что 180° = π радианов.
 */
-        internal static double Rad2Deg(double aRad) => throw new NotImplementedException();
+        internal static double Rad2Deg(double aRad) => aRad / Math.PI * 180;
 
         public static void Main(string[] args)
         {
