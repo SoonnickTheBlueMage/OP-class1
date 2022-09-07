@@ -47,12 +47,41 @@ namespace Task5
 
         internal static BigInteger Fib(int n)
         {
-            throw new NotImplementedException();
+            if (n == 0)
+            {
+                return BigInteger.Zero;
+            }
+            else if (n < 3)
+            {
+                return BigInteger.One;
+            }
+            BigInteger current = BigInteger.Zero;
+            BigInteger prev1 = BigInteger.One;
+            BigInteger prev2 = BigInteger.One;
+            
+            for (int i = 0; i < n-2; i++)
+            {
+                current = prev1 + prev2;
+                prev2 = prev1;
+                prev1 = current;
+            }
+
+            return current;
         }
 
         internal static void ComputeFib(string[] args)
         {
-            throw new NotImplementedException();
+            string input;
+            if (args.Length > 0)
+            {
+                input = string.Join(' ', args);
+            }
+            else
+            {
+                input = Console.ReadLine()!;
+            }
+
+            Console.WriteLine(Fib(int.Parse(input)));
         }
     }
 }
