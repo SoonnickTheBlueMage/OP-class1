@@ -12,7 +12,9 @@
  * f(x) = 	1,	если x принадлежит [0, 1), [2, 3), …,
            −1,	если x принадлежит [1, 2), [3, 4), … .
  */
-        internal static double F(double x) => throw new NotImplementedException();
+        internal static double F(double x) => x < 0 ? 0.0
+                                            : Math.Floor(x) % 2 == 0 ? 1.0
+                                            : -1.0;
 
 /*
  * Задание 3.2. Дан номер года (положительное целое число). Определить количество дней в этом году,
@@ -20,7 +22,7 @@
  * делящийся на 4, за исключением тех годов, которые делятся на 100 и не делятся на 400
  * (например, годы 300, 1300 и 1900 не являются високосными, а 1200 и 2000 — являются).
  */
-        internal static int NumberOfDays(int year) => throw new NotImplementedException();
+        internal static int NumberOfDays(int year) => year % 4 == 0 & (year % 100 != 0 | year % 400 == 0)? 366 : 365;
 
 /*
  * Задание 3.3. Локатор ориентирован на одну из сторон света («С» — север, «З» — запад,
@@ -31,9 +33,20 @@
  */
         internal static char Rotate2(char orientation, int cmd1, int cmd2)
         {
-            char rotate1(char orientation, int cmd) => throw new NotImplementedException();
+            char rotate1(char orientation, int cmd) =>
+                orientation == 'С' && cmd == 1 ? 'З' :
+                orientation == 'С' && cmd == -1 ? 'В' :
+                orientation == 'С' && cmd == 2 ? 'Ю' :
+                orientation == 'З' && cmd == 1 ? 'Ю' :
+                orientation == 'З' && cmd == -1 ? 'С' :
+                orientation == 'З' && cmd == 2 ? 'В' :
+                orientation == 'Ю' && cmd == 1 ? 'В' :
+                orientation == 'Ю' && cmd == -1 ? 'З' :
+                orientation == 'Ю' && cmd == 2 ? 'С' :
+                orientation == 'В' && cmd == 1 ? 'С' :
+                orientation == 'В' && cmd == -1 ? 'Ю' : 'З';
 
-            throw new NotImplementedException();
+            return rotate1(rotate1(orientation, cmd1), cmd2);
         }
 
 /*
@@ -47,13 +60,37 @@
  */
         internal static String AgeDescription(int age)
         {
-            throw new NotImplementedException();
+            String s_age = "";
+            int years = age % 10;
+            s_age += age >= 20 & age <= 29 ? "двадцать " :
+                     age >= 30 & age <= 39 ? "тридцать " :
+                     age >= 40 & age <= 49 ? "сорок " :
+                     age >= 50 & age <= 59 ? "пятьдесят " :
+                     age >= 60 & age <= 69 ? "шестьдесят ": "";
+            
+            s_age += years == 1 ? "один " :
+                     years == 2 ? "два " :
+                     years == 3 ? "три " :
+                     years == 4 ? "четыре " :
+                     years == 5 ? "пять ":
+                     years == 6 ? "шесть ":
+                     years == 7 ? "семь ":
+                     years == 8 ? "восемь ":
+                     years == 9 ? "девять ": "";
+
+            s_age += years == 1 ? "год" :
+                     years >= 2 & years <= 4 ? "года" :
+                     "лет";
+
+            return s_age;
         }
 
         public static void Main(string[] args)
         {
-            throw new NotImplementedException(
-                "Вызовите здесь все перечисленные в классе функции, как это сделано в предыдущих заданиях");
+            Console.WriteLine(F(25.7));
+            Console.WriteLine(NumberOfDays(2024));
+            Console.WriteLine(Rotate2('С', 1, 2));
+            Console.WriteLine(AgeDescription(27));
         }
     }
 }
