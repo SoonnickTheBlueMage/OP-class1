@@ -51,22 +51,22 @@ namespace Task5
             {
                 return BigInteger.Zero;
             }
-            else if (n < 3)
+            if (n < 3)
             {
                 return BigInteger.One;
             }
-            BigInteger current = BigInteger.Zero;
-            BigInteger prev1 = BigInteger.One;
-            BigInteger prev2 = BigInteger.One;
             
-            for (int i = 0; i < n-2; i++)
+            BigInteger prev = BigInteger.One;
+            BigInteger current = BigInteger.One;
+            
+            for (int i = 0; i < n - 2; i++)
             {
-                current = prev1 + prev2;
-                prev2 = prev1;
-                prev1 = current;
+                BigInteger newVal = prev + current;
+                current = prev;
+                prev = newVal;
             }
 
-            return current;
+            return prev;
         }
 
         internal static void ComputeFib(string[] args)
